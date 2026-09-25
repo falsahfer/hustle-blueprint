@@ -6,15 +6,15 @@
 <title>The 5-Stream Hustle Blueprint</title>
 <style>
   :root{
-    --bg:#0c0e14; --panel:#151824; --panel2:#11141f; --ink:#eef1f7; --muted:#9aa4bd;
-    --line:#262c3d;
-    --x:#5ac8fa; --news:#ffd166; --comm:#c084fc; --aff:#4ade80; --core:#ff7a59;
+    --bg:#ffffff; --panel:#f6f7f9; --panel2:#eef0f4; --ink:#1a1d29; --muted:#5b6478;
+    --line:#e3e6ec;
+    --x:#0284c7; --news:#d97706; --comm:#9333ea; --aff:#16a34a; --core:#ea580c;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
-  body{background:#05060a;color:var(--ink);font-family:'Segoe UI',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{background:#eceef2;color:var(--ink);font-family:'Segoe UI',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   .page{width:820px;min-height:1060px;margin:22px auto;background:var(--bg);
     padding:44px 46px;border:1px solid var(--line);border-radius:14px;
-    box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
+    box-shadow:0 12px 40px rgba(20,30,60,.12);position:relative}
   .kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
   h1{font-size:34px;line-height:1.1;margin:6px 0 4px;font-weight:800}
   h1 .accent{color:var(--core)}
@@ -22,11 +22,11 @@
   h2{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
     margin:30px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
   .pill{display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;
-    color:#05060a;background:var(--core);padding:3px 10px;border-radius:20px;font-weight:700}
+    color:#fff;background:var(--core);padding:3px 10px;border-radius:20px;font-weight:700}
   /* core + orbit */
   .model{display:flex;gap:16px;margin-top:26px;align-items:stretch}
-  .core-card{flex:0 0 232px;background:linear-gradient(160deg,#2a1710,#151824);
-    border:1px solid #6b3a28;border-radius:14px;padding:22px;display:flex;
+  .core-card{flex:0 0 232px;background:linear-gradient(160deg,#fff4ee,#f6f7f9);
+    border:1px solid #f2c9b3;border-radius:14px;padding:22px;display:flex;
     flex-direction:column;justify-content:center}
   .core-card .tag{color:var(--core);font-size:11px;letter-spacing:2px;text-transform:uppercase}
   .core-card h3{font-size:22px;margin:8px 0 6px}
@@ -44,8 +44,8 @@
   .stage b{display:block;font-size:15px;margin-top:5px}
   .stage small{color:var(--muted);font-size:11px}
   .arrow{flex:0 0 34px;text-align:center;color:var(--core);font-size:20px;font-weight:700}
-  .callout{margin-top:16px;background:linear-gradient(160deg,#1a1420,#151824);
-    border:1px solid #3a2f4d;border-left:4px solid var(--core);border-radius:11px;padding:16px 18px}
+  .callout{margin-top:16px;background:linear-gradient(160deg,#fff6f1,#f6f7f9);
+    border:1px solid #f0dacf;border-left:4px solid var(--core);border-radius:11px;padding:16px 18px}
   .callout b{color:var(--ink);font-size:14px}
   .callout p{color:var(--muted);font-size:13px;line-height:1.55;margin-top:5px}
   /* stream overview rows */
@@ -65,7 +65,7 @@
   .deep .head{display:flex;align-items:center;gap:12px;padding:14px 18px;
     border-bottom:1px solid var(--line);background:var(--panel2)}
   .deep .badge{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;
-    justify-content:center;font-weight:800;font-size:15px;color:#05060a;flex:0 0 30px}
+    justify-content:center;font-weight:800;font-size:15px;color:#fff;flex:0 0 30px}
   .deep .head h4{font-size:16px;flex:1}
   .deep .head .money{font-size:12px;color:var(--muted);text-align:right;line-height:1.3}
   .deep .head .money b{display:block;color:var(--aff);font-size:15px}
@@ -74,7 +74,7 @@
   .deep .cell:nth-child(odd){border-right:1px solid var(--line)}
   .deep .cell .lbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
   .deep .cell p{font-size:13px;line-height:1.5;color:var(--ink)}
-  .deep .cell.warn p{color:#ffb4a0}
+  .deep .cell.warn p{color:#b91c1c}
   .deep .cell .tools{font-size:12.5px;color:var(--muted);line-height:1.5}
   /* income mix bar */
   .mix{margin-top:6px}
@@ -83,7 +83,7 @@
   .mixrow .track{flex:1;background:var(--panel2);border:1px solid var(--line);
     border-radius:8px;height:26px;overflow:hidden}
   .mixrow .fill{height:100%;display:flex;align-items:center;padding-left:10px;
-    font-size:12px;font-weight:700;color:#05060a}
+    font-size:12px;font-weight:700;color:#fff}
   .mixrow .amt{flex:0 0 78px;text-align:right;font-size:13px;color:var(--muted)}
   /* ramp */
   .ramp{display:flex;gap:10px;margin-top:4px}
@@ -96,7 +96,7 @@
   .cline{margin-bottom:18px}
   .cline .q{font-size:13px;color:var(--muted);margin-bottom:8px}
   .cline .q b{color:var(--ink)}
-  .blank{border-bottom:1px dashed #3a4159;height:26px}
+  .blank{border-bottom:1px dashed #b8bfce;height:26px}
   .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px}
   .foot{margin-top:26px;color:var(--muted);font-size:12px;text-align:center;
     border-top:1px solid var(--line);padding-top:16px;line-height:1.5}
