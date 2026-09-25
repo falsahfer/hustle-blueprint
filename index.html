@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 5-Stream Hustle Blueprint</title>
+<style>
+  :root{
+    --bg:#0c0e14; --panel:#151824; --panel2:#11141f; --ink:#eef1f7; --muted:#9aa4bd;
+    --line:#262c3d;
+    --x:#5ac8fa; --news:#ffd166; --comm:#c084fc; --aff:#4ade80; --core:#ff7a59;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  body{background:#05060a;color:var(--ink);font-family:'Segoe UI',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .page{width:820px;min-height:1060px;margin:22px auto;background:var(--bg);
+    padding:44px 46px;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative}
+  .kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:34px;line-height:1.1;margin:6px 0 4px;font-weight:800}
+  h1 .accent{color:var(--core)}
+  .sub{color:var(--muted);font-size:15px;max-width:640px;line-height:1.55;margin-top:8px}
+  h2{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+    margin:30px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .pill{display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+    color:#05060a;background:var(--core);padding:3px 10px;border-radius:20px;font-weight:700}
+  /* core + orbit */
+  .model{display:flex;gap:16px;margin-top:26px;align-items:stretch}
+  .core-card{flex:0 0 232px;background:linear-gradient(160deg,#2a1710,#151824);
+    border:1px solid #6b3a28;border-radius:14px;padding:22px;display:flex;
+    flex-direction:column;justify-content:center}
+  .core-card .tag{color:var(--core);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .core-card h3{font-size:22px;margin:8px 0 6px}
+  .core-card p{color:var(--muted);font-size:13px;line-height:1.5}
+  .orbit{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+  .chip .dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:8px}
+  .chip b{font-size:14px}
+  .chip span{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.4}
+  /* flow */
+  .flow{display:flex;align-items:center;gap:0;margin-top:6px}
+  .stage{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:11px;
+    padding:15px 12px;text-align:center}
+  .stage .lab{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+  .stage b{display:block;font-size:15px;margin-top:5px}
+  .stage small{color:var(--muted);font-size:11px}
+  .arrow{flex:0 0 34px;text-align:center;color:var(--core);font-size:20px;font-weight:700}
+  .callout{margin-top:16px;background:linear-gradient(160deg,#1a1420,#151824);
+    border:1px solid #3a2f4d;border-left:4px solid var(--core);border-radius:11px;padding:16px 18px}
+  .callout b{color:var(--ink);font-size:14px}
+  .callout p{color:var(--muted);font-size:13px;line-height:1.55;margin-top:5px}
+  /* stream overview rows */
+  .stream{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);
+    border-left-width:4px;border-radius:11px;padding:15px 17px;margin-bottom:11px}
+  .stream .num{font-size:26px;font-weight:800;opacity:.35;flex:0 0 34px}
+  .stream .body{flex:1}
+  .stream h4{font-size:15px;margin-bottom:3px}
+  .stream .desc{color:var(--muted);font-size:13px;line-height:1.5}
+  .stream .meta{display:flex;gap:22px;margin-top:9px;flex-wrap:wrap}
+  .stream .meta div{font-size:12px}
+  .stream .meta .k{color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-size:10px}
+  .stream .meta .v{color:var(--ink);font-weight:600;margin-top:1px}
+  /* deep dive cards */
+  .deep{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:0;margin-bottom:16px;overflow:hidden}
+  .deep .head{display:flex;align-items:center;gap:12px;padding:14px 18px;
+    border-bottom:1px solid var(--line);background:var(--panel2)}
+  .deep .badge{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:15px;color:#05060a;flex:0 0 30px}
+  .deep .head h4{font-size:16px;flex:1}
+  .deep .head .money{font-size:12px;color:var(--muted);text-align:right;line-height:1.3}
+  .deep .head .money b{display:block;color:var(--aff);font-size:15px}
+  .deep .grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .deep .cell{padding:14px 18px;border-top:1px solid var(--line)}
+  .deep .cell:nth-child(odd){border-right:1px solid var(--line)}
+  .deep .cell .lbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+  .deep .cell p{font-size:13px;line-height:1.5;color:var(--ink)}
+  .deep .cell.warn p{color:#ffb4a0}
+  .deep .cell .tools{font-size:12.5px;color:var(--muted);line-height:1.5}
+  /* income mix bar */
+  .mix{margin-top:6px}
+  .mixrow{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .mixrow .name{flex:0 0 150px;font-size:13px}
+  .mixrow .track{flex:1;background:var(--panel2);border:1px solid var(--line);
+    border-radius:8px;height:26px;overflow:hidden}
+  .mixrow .fill{height:100%;display:flex;align-items:center;padding-left:10px;
+    font-size:12px;font-weight:700;color:#05060a}
+  .mixrow .amt{flex:0 0 78px;text-align:right;font-size:13px;color:var(--muted)}
+  /* ramp */
+  .ramp{display:flex;gap:10px;margin-top:4px}
+  .mo{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px}
+  .mo .h{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--core);margin-bottom:8px}
+  .mo li{list-style:none;font-size:12.5px;color:var(--muted);margin-bottom:5px;padding-left:14px;position:relative;line-height:1.4}
+  .mo li:before{content:'\25B8';position:absolute;left:0;color:var(--core)}
+  /* canvas */
+  .canvas{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .cline{margin-bottom:18px}
+  .cline .q{font-size:13px;color:var(--muted);margin-bottom:8px}
+  .cline .q b{color:var(--ink)}
+  .blank{border-bottom:1px dashed #3a4159;height:26px}
+  .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px}
+  .foot{margin-top:26px;color:var(--muted);font-size:12px;text-align:center;
+    border-top:1px solid var(--line);padding-top:16px;line-height:1.5}
+  @media print{body{background:#fff}.page{margin:0;box-shadow:none;border:none;page-break-after:always}}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page">
+  <div class="kicker">The Solo Operator's Playbook</div>
+  <h1>Turn one hustle into <span class="accent">five income streams</span></h1>
+  <p class="sub">You already have the hard part: a thing people pay for, and a small audience that trusts you. This guide shows you how to stack four more revenue streams on top of that one hustle, in an order that actually works, without burning out or launching everything at once.</p>
+
+  <h2>The Model — your hustle is the sun, everything else orbits it</h2>
+  <div class="model">
+    <div class="core-card">
+      <div class="tag">Stream 0 · The Core</div>
+      <h3>Your Hustle</h3>
+      <p>Whatever you already sell: a product, a service, coaching, an app. Every other stream exists to feed it or feed off it. If a new stream doesn't connect back to the core, skip it.</p>
+    </div>
+    <div class="orbit">
+      <div class="chip"><span class="dot" style="background:var(--x)"></span><b>X / Twitter</b><span>The reach engine. Where new people find you.</span></div>
+      <div class="chip"><span class="dot" style="background:var(--news)"></span><b>Newsletter</b><span>The land you own. Nobody can throttle it.</span></div>
+      <div class="chip"><span class="dot" style="background:var(--comm)"></span><b>Community</b><span>Free to nurture, paid to monetize.</span></div>
+      <div class="chip"><span class="dot" style="background:var(--aff)"></span><b>Affiliates</b><span>Get paid to recommend what you already use.</span></div>
+    </div>
+  </div>
+
+  <h2>The Attention Engine — money follows attention, in this order</h2>
+  <div class="flow">
+    <div class="stage"><div class="lab">Reach</div><b>X / Twitter</b><small>strangers find you</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab">Capture</div><b>Newsletter</b><small>you own the list</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab">Nurture</div><b>Free Community</b><small>trust compounds</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab">Monetize</div><b>Paid Offers</b><small>core + community + affiliate</small></div>
+  </div>
+
+  <div class="callout">
+    <b>The one rule that keeps you safe: no single stream over 40% of the money.</b>
+    <p>If X changes an algorithm or a sponsor ghosts you, the other streams keep the lights on. You are diversifying the money, not the effort. Every stream in this blueprint feeds off the same daily work: showing up and being useful.</p>
+  </div>
+
+  <div class="foot">Built for a real audience of ~1,400. Small enough to be honest, big enough to work. Page 1 of 5.</div>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <div class="kicker">The Build Order</div>
+  <h1>Five streams, turned on <span class="accent">one at a time</span></h1>
+  <p class="sub">Activate in this sequence. Each stream gets easier because the one before it built the audience for it. The numbers on the next pages assume roughly 1,400 followers and a list you are actively growing.</p>
+
+  <h2>The Streams at a Glance</h2>
+
+  <div class="stream" style="border-left-color:var(--aff)">
+    <div class="num">1</div>
+    <div class="body">
+      <h4>Affiliate products — start here, works at any size</h4>
+      <div class="desc">Recommend the tools you genuinely use and drop your link. Zero inventory, no support tickets, and it pays even with a tiny audience because it runs on trust, not volume.</div>
+      <div class="meta">
+        <div><div class="k">Turn on at</div><div class="v">Any size</div></div>
+        <div><div class="k">Effort</div><div class="v">Low</div></div>
+        <div><div class="k">First action</div><div class="v">Pick 3 tools you love, grab their affiliate links</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stream" style="border-left-color:var(--news)">
+    <div class="num">2</div>
+    <div class="body">
+      <h4>Newsletter — the asset you actually own</h4>
+      <div class="desc">Turn scattered followers into a list nobody can take from you. Monetize later with a paid tier or one sponsor slot. The real win is owning the direct line to your people.</div>
+      <div class="meta">
+        <div><div class="k">Turn on at</div><div class="v">Now</div></div>
+        <div><div class="k">Sponsor income at</div><div class="v">~1,000+ subs</div></div>
+        <div><div class="k">First action</div><div class="v">Set up the opt-in, pin it on your X profile</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stream" style="border-left-color:var(--x)">
+    <div class="num">3</div>
+    <div class="body">
+      <h4>X / Twitter engagement revenue</h4>
+      <div class="desc">Once you post consistently and replies pick up, the platform's creator payouts kick in. Treat it as a bonus on top of reach, never the main event. The reach itself is worth more than the payout.</div>
+      <div class="meta">
+        <div><div class="k">Turn on at</div><div class="v">Consistent posting</div></div>
+        <div><div class="k">Driver</div><div class="v">Reply volume + impressions</div></div>
+        <div><div class="k">First action</div><div class="v">Post daily, reply to 5 bigger accounts a day</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stream" style="border-left-color:var(--comm)">
+    <div class="num">4</div>
+    <div class="body">
+      <h4>Private paid community</h4>
+      <div class="desc">Your most engaged people will happily pay to be closer to you and each other. Run the free version first, and when the same faces keep showing up, put a door on the good room.</div>
+      <div class="meta">
+        <div><div class="k">Turn on at</div><div class="v">~1,000 engaged fans</div></div>
+        <div><div class="k">Income type</div><div class="v">Recurring / monthly</div></div>
+        <div><div class="k">First action</div><div class="v">Start a free chat, watch who never leaves</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stream" style="border-left-color:var(--core)">
+    <div class="num">5</div>
+    <div class="body">
+      <h4>Scale the core hustle</h4>
+      <div class="desc">Now point all that attention back at the thing that started it. The other four streams are proof and pipeline. Use them to raise prices, add an offer, or productize what you do by hand today.</div>
+      <div class="meta">
+        <div><div class="k">Turn on at</div><div class="v">Streams 1&ndash;4 humming</div></div>
+        <div><div class="k">Move</div><div class="v">Raise price or productize</div></div>
+        <div><div class="k">First action</div><div class="v">Package your best result into one clear offer</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Why this order and not another?</b>
+    <p>Affiliate and newsletter cost you nothing and work today, so they go first. X revenue needs consistency to trigger. The paid community needs a warm free room to graduate from. And you scale the core last, because by then you have proof, an audience, and pricing power you did not have on day one.</p>
+  </div>
+
+  <div class="foot">Read the order top to bottom. Turn them on in that same order. Page 2 of 5.</div>
+</section>
+
+<!-- ============ PAGE 3 ============ -->
+<section class="page">
+  <div class="kicker">Deep Dive · Streams 1&ndash;3</div>
+  <h1>The <span class="accent">free-to-start</span> three</h1>
+  <p class="sub">These three cost nothing but attention and consistency. Here is the honest money math at ~1,400 followers, the tools that do the job, the mistake that quietly kills each one, and your move this week.</p>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--aff)">1</div>
+      <h4>Affiliate products</h4>
+      <div class="money">realistic at ~1,400<br><b>$50 – $300/mo</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">How it actually pays</div><p>Software affiliates beat physical ones: many pay 20&ndash;30% recurring for as long as the customer stays. Three genuine recommendations shared naturally can quietly compound month over month.</p></div>
+      <div class="cell"><div class="lbl">Tools to use</div><p class="tools">The affiliate or partner program of any tool you already pay for. A simple link shortener. A pinned "my stack" page or note.</p></div>
+      <div class="cell warn"><div class="lbl">The mistake that kills it</div><p>Promoting things you don't use. One bad recommendation costs you more trust than the commission is worth. Recommend only what you would text a friend.</p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>List the 3 tools you can't work without. Sign up for their affiliate programs. Write one honest post about how you actually use one of them.</p></div>
+    </div>
+  </div>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--news)">2</div>
+      <h4>Newsletter</h4>
+      <div class="money">realistic at ~1,400<br><b>$0 now, $50 – $150 later</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">How it actually pays</div><p>Early on the payoff is ownership, not cash. Past ~1,000 subs one sponsor slot runs $50&ndash;$150 an issue, and a $6&ndash;$10/mo paid tier turns your top readers into recurring income.</p></div>
+      <div class="cell"><div class="lbl">Tools to use</div><p class="tools">A creator-friendly newsletter platform with a free tier. A single clear opt-in page. One welcome email that sets expectations.</p></div>
+      <div class="cell warn"><div class="lbl">The mistake that kills it</div><p>Waiting until it is "big enough" to start, or emailing so rarely people forget who you are. Consistency beats size every time.</p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Set up the opt-in and pin it to your X profile. Send issue one to whoever is already there, even if that is 40 people.</p></div>
+    </div>
+  </div>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--x)">3</div>
+      <h4>X / Twitter engagement revenue</h4>
+      <div class="money">realistic at ~1,400<br><b>$10 – $100/mo</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">How it actually pays</div><p>Payouts track verified-user impressions on your replies and posts, so the driver is reply volume in the right rooms. At this size it is coffee money. The reach it builds is the real asset.</p></div>
+      <div class="cell"><div class="lbl">Tools to use</div><p class="tools">The platform's own creator monetization setting. A scheduler so you post daily without living in the app. A short list of bigger accounts in your niche.</p></div>
+      <div class="cell warn"><div class="lbl">The mistake that kills it</div><p>Chasing the payout with engagement bait. It torches credibility and the money is tiny. Post for the audience, let the payout be a side effect.</p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Turn on monetization if you qualify. Commit to one post a day and five thoughtful replies to bigger accounts in your lane.</p></div>
+    </div>
+  </div>
+
+  <div class="foot">Free to start, but not free of effort. Consistency is the whole trick. Page 3 of 5.</div>
+</section>
+
+<!-- ============ PAGE 4 ============ -->
+<section class="page">
+  <div class="kicker">Deep Dive · Streams 4&ndash;5 + The Math</div>
+  <h1>The <span class="accent">high-leverage</span> two</h1>
+  <p class="sub">These two move the most money, and they only work once the first three warmed up your audience. Then we put real numbers behind the 40% rule so you can see what a healthy income mix looks like.</p>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--comm)">4</div>
+      <h4>Private paid community</h4>
+      <div class="money">realistic at ~1,400<br><b>$180 – $950/mo</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">How it actually pays</div><p>Recurring is the magic word. Just 20&ndash;50 members at $9&ndash;$19/mo compounds while you sleep. A small warm community out-earns a big cold one, every time.</p></div>
+      <div class="cell"><div class="lbl">Tools to use</div><p class="tools">A community platform with built-in paid tiers, or a simple gated chat plus a subscription link. Keep the tech boring so the room stays the point.</p></div>
+      <div class="cell warn"><div class="lbl">The mistake that kills it</div><p>Charging before there is a reason to join, then going quiet. An empty paid room refunds fast. Build the free habit first, then gate the best part.</p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Open a free chat for your most active followers. Show up daily for two weeks. Note who never leaves. That is your founding paid cohort.</p></div>
+    </div>
+  </div>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--core)">5</div>
+      <h4>Scale the core hustle</h4>
+      <div class="money">realistic upside<br><b>the biggest lever</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">How it actually pays</div><p>The other four streams gave you proof, reach, and pricing power. A 20&ndash;40% price bump on a proven offer, or one productized version of what you do by hand, usually beats every other stream combined.</p></div>
+      <div class="cell"><div class="lbl">Tools to use</div><p class="tools">A clean sales or booking page. Testimonials pulled from your community and replies. One simple, named offer with a clear result.</p></div>
+      <div class="cell warn"><div class="lbl">The mistake that kills it</div><p>Adding more offers instead of sharpening one. Confused buyers don't buy. Say no to the shiny second product until the first is dialed in.</p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Write your best client result as one sentence. Build the offer around that sentence. Raise the price on the next person who asks.</p></div>
+    </div>
+  </div>
+
+  <h2>What a healthy mix looks like — nobody over 40%</h2>
+  <div class="mix">
+    <div class="mixrow"><div class="name" style="color:var(--core)">Core hustle</div><div class="track"><div class="fill" style="width:38%;background:var(--core)">38%</div></div><div class="amt">~$760</div></div>
+    <div class="mixrow"><div class="name" style="color:var(--comm)">Paid community</div><div class="track"><div class="fill" style="width:27%;background:var(--comm)">27%</div></div><div class="amt">~$540</div></div>
+    <div class="mixrow"><div class="name" style="color:var(--aff)">Affiliates</div><div class="track"><div class="fill" style="width:16%;background:var(--aff)">16%</div></div><div class="amt">~$320</div></div>
+    <div class="mixrow"><div class="name" style="color:var(--news)">Newsletter</div><div class="track"><div class="fill" style="width:12%;background:var(--news)">12%</div></div><div class="amt">~$240</div></div>
+    <div class="mixrow"><div class="name" style="color:var(--x)">X payouts</div><div class="track"><div class="fill" style="width:7%;background:var(--x)">7%</div></div><div class="amt">~$140</div></div>
+  </div>
+  <div class="callout">
+    <b>Read the bars, not the total.</b>
+    <p>The exact dollars are illustrative and will differ for everyone. What matters is the shape: no single bar dominates. If any stream creeps past 40%, that is your cue to grow the others, not to celebrate. A balanced $2K is safer than a fragile $5K riding on one algorithm.</p>
+  </div>
+
+  <div class="foot">Two streams do the heavy lifting. Balance keeps you from getting knocked out. Page 4 of 5.</div>
+</section>
+
+<!-- ============ PAGE 5 ============ -->
+<section class="page">
+  <div class="kicker">Ramp + Your Blueprint</div>
+  <h1>Your <span class="accent">first 90 days</span>, then make it yours</h1>
+  <p class="sub">Run this order, then fill in the canvas below with your own hustle and targets. Print it, or type into it, and stick it somewhere you'll see it.</p>
+
+  <h2>The 90-Day Ramp — do not launch all five at once</h2>
+  <div class="ramp">
+    <div class="mo">
+      <div class="h">Days 1&ndash;30 · Foundation</div>
+      <li>Grab affiliate links for your top 3 tools</li>
+      <li>Launch the newsletter, pin the opt-in</li>
+      <li>Post on X daily, 5 real replies a day</li>
+      <li>Send newsletter issue one</li>
+    </div>
+    <div class="mo">
+      <div class="h">Days 31&ndash;60 · Momentum</div>
+      <li>Push the list past 1,000</li>
+      <li>Open a free community chat</li>
+      <li>Turn on X monetization</li>
+      <li>Publish one honest affiliate post</li>
+    </div>
+    <div class="mo">
+      <div class="h">Days 61&ndash;90 · Monetize</div>
+      <li>Gate the paid community tier</li>
+      <li>Land your first newsletter sponsor</li>
+      <li>Re-price or productize the core offer</li>
+      <li>Check the mix, none over 40%</li>
+    </div>
+  </div>
+
+  <h2>The Blueprint Canvas — fill this in</h2>
+  <div class="canvas">
+    <div class="cline">
+      <div class="q"><b>My core hustle (Stream 0):</b> the one thing people already pay me for</div>
+      <div class="blank"></div>
+    </div>
+    <div class="cgrid">
+      <div class="cline"><div class="q"><b>Affiliate:</b> 3 tools I'll recommend</div><div class="blank"></div></div>
+      <div class="cline"><div class="q"><b>Newsletter:</b> name + what it's about</div><div class="blank"></div></div>
+      <div class="cline"><div class="q"><b>X:</b> my daily post + reply target</div><div class="blank"></div></div>
+      <div class="cline"><div class="q"><b>Community:</b> who it's for + the price</div><div class="blank"></div></div>
+    </div>
+    <div class="cline">
+      <div class="q"><b>My 90-day income goal</b> and the one stream I'll turn on first</div>
+      <div class="blank"></div>
+    </div>
+  </div>
+
+  <div class="foot">Pick your core hustle. Run the order. Keep any single stream under 40% of the money.<br>That is the whole game. Now go build it. Page 5 of 5.</div>
+</section>
+
+</body>
+</html>
