@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 5-Stream Hustle Blueprint · Part 2: Your AI Agent Crew</title>
+<style>
+  :root{
+    --bg:#0c0e14; --panel:#151824; --panel2:#11141f; --ink:#eef1f7; --muted:#9aa4bd;
+    --line:#262c3d;
+    --x:#5ac8fa; --news:#ffd166; --comm:#c084fc; --aff:#4ade80; --core:#ff7a59;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  body{background:#05060a;color:var(--ink);font-family:'Segoe UI',Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .page{width:820px;height:1280px;margin:22px auto;background:var(--bg);
+    padding:40px 46px;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);position:relative;overflow:hidden}
+  .kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:34px;line-height:1.1;margin:6px 0 4px;font-weight:800}
+  h1 .accent{color:var(--core)}
+  .sub{color:var(--muted);font-size:15px;max-width:660px;line-height:1.55;margin-top:8px}
+  h2{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+    margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .pill{display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+    color:#fff;background:var(--core);padding:3px 10px;border-radius:20px;font-weight:700}
+  /* core + orbit */
+  .model{display:flex;gap:16px;margin-top:24px;align-items:stretch}
+  .core-card{flex:0 0 232px;background:linear-gradient(160deg,#2a1710,#151824);
+    border:1px solid #4a2f22;border-radius:14px;padding:22px;display:flex;
+    flex-direction:column;justify-content:center}
+  .core-card .tag{color:var(--core);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .core-card h3{font-size:22px;margin:8px 0 6px}
+  .core-card p{color:var(--muted);font-size:13px;line-height:1.5}
+  .orbit{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+  .chip .dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:8px}
+  .chip b{font-size:14px}
+  .chip span{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.4}
+  /* flow */
+  .flow{display:flex;align-items:stretch;gap:0;margin-top:6px}
+  .stage{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:11px;
+    padding:14px 10px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .stage .lab{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+  .stage b{display:block;font-size:14px;margin-top:5px}
+  .stage small{color:var(--muted);font-size:11px;line-height:1.3;display:block;margin-top:3px}
+  .arrow{flex:0 0 28px;display:flex;align-items:center;justify-content:center;color:var(--core);font-size:19px;font-weight:700}
+  .callout{margin-top:16px;background:linear-gradient(160deg,#1a1420,#151824);
+    border:1px solid #33251f;border-left:4px solid var(--core);border-radius:11px;padding:16px 18px}
+  .callout b{color:var(--ink);font-size:14px}
+  .callout p{color:var(--muted);font-size:13px;line-height:1.55;margin-top:5px}
+  /* split columns: automate vs keep */
+  .split{display:flex;gap:16px;margin-top:6px}
+  .col{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .col .ch{padding:13px 16px;font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:800;color:#0c0e14;display:flex;align-items:center;gap:8px}
+  .col.auto .ch{background:var(--aff)}
+  .col.keep .ch{background:var(--core)}
+  .col ul{padding:14px 16px 6px}
+  .col li{list-style:none;font-size:13px;color:var(--ink);margin-bottom:12px;padding-left:18px;position:relative;line-height:1.4;font-weight:600}
+  .col li:before{position:absolute;left:0;top:0;font-size:13px}
+  .col.auto li:before{content:'\2713';color:var(--aff)}
+  .col.keep li:before{content:'\2605';color:var(--core)}
+  .col li span{display:block;color:var(--muted);font-size:12px;margin-top:3px;font-weight:400}
+  /* deep dive cards */
+  .deep{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:0;margin-bottom:15px;overflow:hidden}
+  .deep .head{display:flex;align-items:center;gap:12px;padding:13px 18px;
+    border-bottom:1px solid var(--line);background:var(--panel2)}
+  .deep .badge{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:15px;color:#fff;flex:0 0 30px}
+  .deep .head h4{font-size:16px;flex:1}
+  .deep .head .money{font-size:12px;color:var(--muted);text-align:right;line-height:1.3}
+  .deep .head .money b{display:block;color:var(--aff);font-size:13px}
+  .deep .grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .deep .cell{padding:13px 18px;border-top:1px solid var(--line)}
+  .deep .cell:nth-child(odd){border-right:1px solid var(--line)}
+  .deep .cell .lbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+  .deep .cell p{font-size:12.5px;line-height:1.5;color:var(--ink)}
+  .deep .cell.human{background:linear-gradient(160deg,#1a1410,#151824)}
+  .deep .cell.human .lbl{color:var(--core)}
+  .deep .cell .tools{font-size:12px;color:var(--muted);line-height:1.5}
+  .deep .cell .tools em{color:var(--ink);font-style:normal}
+  /* ramp */
+  .ramp{display:flex;gap:10px;margin-top:4px}
+  .mo{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px}
+  .mo .h{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--core);margin-bottom:8px}
+  .mo li{list-style:none;font-size:12.5px;color:var(--muted);margin-bottom:6px;padding-left:14px;position:relative;line-height:1.4}
+  .mo li:before{content:'\25B8';position:absolute;left:0;color:var(--core)}
+  /* canvas */
+  .canvas{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .cline{margin-bottom:16px}
+  .cline .q{font-size:13px;color:var(--muted);margin-bottom:8px}
+  .cline .q b{color:var(--ink)}
+  .blank{border-bottom:1px dashed #3a4159;height:24px}
+  .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px}
+  .foot{margin-top:24px;color:var(--muted);font-size:12px;text-align:center;
+    border-top:1px solid var(--line);padding-top:16px;line-height:1.5}
+  @media print{body{background:#0c0e14}.page{margin:0;box-shadow:none;border:none;page-break-after:always}}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page">
+  <div class="kicker">The Solo Operator's Playbook · Part 2</div>
+  <h1>Put an <span class="accent">AI agent crew</span> behind all five streams</h1>
+  <p class="sub">Part 1 gave you the five streams. The catch is you are one person, and five streams is a lot of reps. This guide shows you how to hand the repetitive work to AI agents, and exactly where to keep your own hands on the wheel so the quality goes up instead of down.</p>
+
+  <h2>The shift — from doing every task to directing a small crew</h2>
+  <div class="model">
+    <div class="core-card">
+      <div class="tag">You · The Operator</div>
+      <h3>Director, not doer</h3>
+      <p>Your job changes. You stop grinding out every post and start briefing a crew, checking their work, and spending your saved hours on the parts only you can do.</p>
+    </div>
+    <div class="orbit">
+      <div class="chip"><span class="dot" style="background:var(--x)"></span><b>Research agent</b><span>Pulls the news, digests reports, finds the stat.</span></div>
+      <div class="chip"><span class="dot" style="background:var(--news)"></span><b>Draft agent</b><span>Turns your notes into first drafts, at volume.</span></div>
+      <div class="chip"><span class="dot" style="background:var(--comm)"></span><b>Repurpose agent</b><span>One idea into every format you need.</span></div>
+      <div class="chip"><span class="dot" style="background:var(--aff)"></span><b>Monitor agent</b><span>Watches mentions, flags what needs a human.</span></div>
+    </div>
+  </div>
+
+  <h2>Why agents, and why now — the math that makes it obvious</h2>
+  <div class="flow">
+    <div class="stage"><div class="lab">Before</div><b>1 person</b><small>1 stream done well, 4 half-done</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab">The reps</div><b>Agents draft</b><small>research, drafts, repurposing</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab">The taste</div><b>You direct</b><small>edit, approve, reply</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab">After</div><b>5 streams</b><small>all at a quality you can stand behind</small></div>
+  </div>
+
+  <div class="callout">
+    <b>The one rule that keeps quality high: automate the reps, never the relationship or the judgment.</b>
+    <p>An agent can draft ten posts before you finish your coffee. What it cannot do is have taste, hold a real relationship, or own the promise your name makes. Hand it the volume. Keep the moments that need a human. Get that line right and you produce five streams of content that still sound like you.</p>
+  </div>
+
+  <div class="foot">Part 2 of the Blueprint. Read Part 1 first — this one assumes you already picked your streams. Page 1 of 5.</div>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <div class="kicker">The Framework</div>
+  <h1>Where it <span class="accent">actually matters</span></h1>
+  <p class="sub">The whole game is one line: what you hand to the agent, and what you keep for yourself. Get this split right and automation raises your quality. Get it wrong and you flood the world with soulless drafts. Here is the line, drawn clearly.</p>
+
+  <div class="split">
+    <div class="col auto">
+      <div class="ch">&#10003; Let the agent run it</div>
+      <ul>
+        <li>First drafts, at volume<span>Twenty post ideas, five subject lines, a full outline. A blank page is where you stall. The agent never faces one.</span></li>
+        <li>Research and summarizing<span>The week's news in your niche, a long report boiled down, the stat you half-remember, pulled and cited.</span></li>
+        <li>Repurposing across formats<span>One newsletter into eight tweets, a thread, and three short scripts. Same idea, every shape.</span></li>
+        <li>Formatting and cleanup<span>Fix the markdown, tighten to length, add the alt text, build the HTML. The boring last mile.</span></li>
+        <li>Monitoring and sorting<span>Watch mentions, flag the replies worth answering, sort the inbox into "needs a human" and "ignore."</span></li>
+      </ul>
+    </div>
+    <div class="col keep">
+      <div class="ch">&#9733; Keep your hands on it</div>
+      <ul>
+        <li>The promise<span>What your offer actually delivers is your call, never a model's best guess. This is the thing people pay for.</span></li>
+        <li>Taste and the final cut<span>The agent drafts ten, you pick and sharpen the one. Editing is where your voice actually lives.</span></li>
+        <li>Real relationships<span>The note to a new subscriber, the reply to a paying member. People can always tell when it wasn't you.</span></li>
+        <li>Your point of view<span>The take only you have, from work only you did. That is the entire reason anyone follows you.</span></li>
+        <li>The final yes<span>Nothing ships without your eyes on it. You own every word that goes out under your name.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>"Where it matters" is not everywhere — and not nowhere.</b>
+    <p>The trap is thinking it's all or nothing: either automate everything and sound like a robot, or automate nothing and drown. The real move is surgical. Agents take the roughly 80% that is reps and research. You spend the hours you win back on the 20% that only you can do — the taste, the relationships, the actual idea. Quality climbs, because you finally have time for the parts that need you.</p>
+  </div>
+
+  <div class="foot">Print this page and tape it above your desk. It is the whole method in one split. Page 2 of 5.</div>
+</section>
+
+<!-- ============ PAGE 3 ============ -->
+<section class="page">
+  <div class="kicker">Agent Stacks · Streams 1&ndash;3</div>
+  <h1>Agents for the <span class="accent">free-to-start</span> three</h1>
+  <p class="sub">Affiliate, newsletter, and X. For each: the job you hand the agent, the part you keep, the stack plus a prompt you can steal today, and your one move this week.</p>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--aff)">1</div>
+      <h4>Affiliate products</h4>
+      <div class="money">agent saves you<br><b>~3 hrs / week</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">What the agent handles</div><p>Drafts honest use-case posts for each tool, tracks which links get clicks, drafts your monthly "my stack" update, and scouts new tools worth a test.</p></div>
+      <div class="cell human"><div class="lbl">Where it matters — you keep this</div><p>You actually use the tool and vouch for it. An agent can spend trust but never earn it. What you recommend is always your call.</p></div>
+      <div class="cell"><div class="lbl">The stack + a prompt to steal</div><p class="tools">A research agent plus a draft agent. <em>"Here's how I use [tool] and the exact result I got. Draft 3 honest posts, no hype, and make one lead with a specific number."</em></p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Give an agent your 3 tools and last month's click data. Have it draft one honest post per tool. You publish only the ones that are true.</p></div>
+    </div>
+  </div>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--news)">2</div>
+      <h4>Newsletter</h4>
+      <div class="money">agent saves you<br><b>~4 hrs / issue</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">What the agent handles</div><p>Builds the outline from your week's notes, drafts the sections, writes 5 subject-line options, repurposes the issue into X posts, and proofreads.</p></div>
+      <div class="cell human"><div class="lbl">Where it matters — you keep this</div><p>The one real story or lesson at the center. The agent assembles; you supply the thing worth reading. And the final edit for voice is yours.</p></div>
+      <div class="cell"><div class="lbl">The stack + a prompt to steal</div><p class="tools">A draft agent fed your rough notes plus 3 past issues for voice. <em>"Match the voice in these issues. Draft from my bullets. Flag anything you invented so I can check it."</em></p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Dump this week's rough notes into an agent. Have it return an outline and first draft. You rewrite the intro in your own words, then send.</p></div>
+    </div>
+  </div>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--x)">3</div>
+      <h4>X / Twitter</h4>
+      <div class="money">agent saves you<br><b>~5 hrs / week</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">What the agent handles</div><p>Drafts a week of posts from your seed ideas, queues them in a scheduler, watches your niche for reply-worthy threads, and drafts reply options.</p></div>
+      <div class="cell human"><div class="lbl">Where it matters — you keep this</div><p>The actual reply in someone's mentions, and any real take. Automated replies read as automated. Show up as a person where it counts.</p></div>
+      <div class="cell"><div class="lbl">The stack + a prompt to steal</div><p class="tools">An idea-to-draft agent plus a monitor. <em>"From these 5 ideas, draft 15 posts in my voice. Then list 5 bigger accounts posting about X today that are worth a real reply."</em></p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Feed an agent 5 seed ideas, have it draft next week's posts. You approve and schedule the batch, but write every reply yourself.</p></div>
+    </div>
+  </div>
+
+  <div class="foot">Same pattern every time: agent drafts the volume, you keep the taste and the replies. Page 3 of 5.</div>
+</section>
+
+<!-- ============ PAGE 4 ============ -->
+<section class="page">
+  <div class="kicker">Agent Stacks · Streams 4&ndash;5 + The Loop</div>
+  <h1>Agents for the <span class="accent">high-leverage</span> two</h1>
+  <p class="sub">Community and the core hustle move the most money, so the human part matters most here. Then the quality-control loop that ties every stream together and keeps the output sounding like you.</p>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--comm)">4</div>
+      <h4>Private paid community</h4>
+      <div class="money">agent saves you<br><b>~3 hrs / week</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">What the agent handles</div><p>Drafts daily prompts to keep the room alive, summarizes the week's best threads into a recap, drafts onboarding messages, and flags members who went quiet.</p></div>
+      <div class="cell human"><div class="lbl">Where it matters — you keep this</div><p>Being actually present. People pay to be closer to you, not your bot. Show up live and answer real questions in your own words.</p></div>
+      <div class="cell"><div class="lbl">The stack + a prompt to steal</div><p class="tools">A recap agent run on your chat export. <em>"Summarize this week's chat into a 5-bullet recap and 3 discussion prompts for next week. Keep my casual tone."</em></p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Automate the weekly recap and a daily prompt. Then block 15 real minutes a day to reply as yourself. That presence is the product.</p></div>
+    </div>
+  </div>
+
+  <div class="deep">
+    <div class="head">
+      <div class="badge" style="background:var(--core)">5</div>
+      <h4>Scale the core hustle</h4>
+      <div class="money">agent saves you<br><b>the setup grind</b></div>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="lbl">What the agent handles</div><p>Drafts sales-page copy variants, pulls testimonials from your community and replies, researches competitor pricing, and drafts the FAQ and onboarding.</p></div>
+      <div class="cell human"><div class="lbl">Where it matters — you keep this</div><p>The offer itself and the promise you can keep. Pricing is your judgment call. Delivery is you. The agent stages it; you decide it.</p></div>
+      <div class="cell"><div class="lbl">The stack + a prompt to steal</div><p class="tools">A copy agent fed your best client result and real testimonials. <em>"Draft 3 sales headlines around this result. No superlatives. Lead with the number."</em></p></div>
+      <div class="cell"><div class="lbl">Your move this week</div><p>Have an agent assemble your testimonials and draft 3 headline options. You pick the true one, then raise your price on the next buyer.</p></div>
+    </div>
+  </div>
+
+  <h2>The quality-control loop — you at both ends, agents in the middle</h2>
+  <div class="flow">
+    <div class="stage" style="border-color:#4a2f22"><div class="lab" style="color:var(--core)">You</div><b>The idea</b><small>the take only you have</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab" style="color:var(--aff)">Agent</div><b>Drafts it</b><small>at volume, in your voice</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage" style="border-color:#4a2f22"><div class="lab" style="color:var(--core)">You</div><b>Edit + approve</b><small>taste and final yes</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage"><div class="lab" style="color:var(--aff)">Agent</div><b>Ships + watches</b><small>schedules, monitors</small></div>
+    <div class="arrow">&rarr;</div>
+    <div class="stage" style="border-color:#4a2f22"><div class="lab" style="color:var(--core)">You</div><b>Reply where it counts</b><small>the real relationships</small></div>
+  </div>
+
+  <div class="callout">
+    <b>The loop is the point, not the tool.</b>
+    <p>Agents are fast, but they have no taste and no relationships. Keep yourself at the start of every loop (the idea) and the end (the edit and the reply). Automate the messy middle. Do that and you produce five streams' worth of content at a quality one person could never hit by hand.</p>
+  </div>
+
+  <div class="foot">Money streams need more of you, not less. Agents free up the hours to give it. Page 4 of 5.</div>
+</section>
+
+<!-- ============ PAGE 5 ============ -->
+<section class="page">
+  <div class="kicker">Rollout + Your Agent Plan</div>
+  <h1>Your <span class="accent">first 90 days</span> with a crew</h1>
+  <p class="sub">Do not automate all five streams on day one — you will lose your voice and not notice until it's gone. Add agents gradually, teach each one how you sound, then fill in the canvas with your own plan.</p>
+
+  <h2>The 90-Day Agent Rollout — teach the crew before you trust it</h2>
+  <div class="ramp">
+    <div class="mo">
+      <div class="h">Days 1&ndash;30 · Teach</div>
+      <li>Pick one agent tool, learn to prompt it well</li>
+      <li>Feed it 3 past pieces so it learns your voice</li>
+      <li>Automate one thing: newsletter into X posts</li>
+      <li>Write everything else by hand for now</li>
+    </div>
+    <div class="mo">
+      <div class="h">Days 31&ndash;60 · Expand</div>
+      <li>Add a research agent for newsletter prep</li>
+      <li>Let an agent draft your week of X posts</li>
+      <li>Set up monitoring for mentions + threads</li>
+      <li>You still write every reply and final edit</li>
+    </div>
+    <div class="mo">
+      <div class="h">Days 61&ndash;90 · Systemize</div>
+      <li>One agent per stream, each with a voice prompt</li>
+      <li>A weekly QC block: edit + approve the batch</li>
+      <li>Automate community recaps + affiliate drafts</li>
+      <li>Audit: would you have written it? If not, retune</li>
+    </div>
+  </div>
+
+  <h2>Your Agent Canvas — fill this in</h2>
+  <div class="canvas">
+    <div class="cline">
+      <div class="q"><b>My voice prompt:</b> the 3 pieces I'll feed every agent so it sounds like me</div>
+      <div class="blank"></div>
+    </div>
+    <div class="cgrid">
+      <div class="cline"><div class="q"><b>Affiliate:</b> agent drafts ___ / I keep ___</div><div class="blank"></div></div>
+      <div class="cline"><div class="q"><b>Newsletter:</b> agent drafts ___ / I keep ___</div><div class="blank"></div></div>
+      <div class="cline"><div class="q"><b>X:</b> agent drafts ___ / I keep ___</div><div class="blank"></div></div>
+      <div class="cline"><div class="q"><b>Community + Core:</b> agent drafts ___ / I keep ___</div><div class="blank"></div></div>
+    </div>
+    <div class="cline">
+      <div class="q"><b>The one task I'll automate first</b> this week, and how I'll check its quality</div>
+      <div class="blank"></div>
+    </div>
+  </div>
+
+  <div class="foot">Automate the reps. Guard the taste and the relationships. That is where it matters.<br>Direct the crew, keep your voice, and go build all five. Page 5 of 5.</div>
+</section>
+
+</body>
+</html>
